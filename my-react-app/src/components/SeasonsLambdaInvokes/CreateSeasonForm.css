@@ -1,0 +1,83 @@
+.create-season-wrapper {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.toggle-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-season-form {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #fffbe6;
+  border: 1px solid #e6d98c;
+  border-radius: 6px;
+  color: black;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: green;
+}
+
+.cinema-id {
+  margin-bottom: 12px;
+}
+
+.input,
+.textarea,
+.submit-button {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+
+.textarea {
+  min-height: 90px;
+  font-family: monospace;
+}
+
+/* visual state rules */
+
+.optional {
+  background-color: #f0f0f0;
+}
+
+.required-empty {
+  background-color: #ffe5e5;
+}
+
+.required-filled {
+  background-color: #e6f2ff;
+}
+
+.required-invalid {
+  background-color: #ffcccc;
+}
+
+.submit-button {
+  margin-top: 8px;
+}
+
+.error {
+  color: red;
+  margin-top: 8px;
+}
+
+.success {
+  color: green;
+  margin-top: 8px;
+}

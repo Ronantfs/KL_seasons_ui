@@ -4,6 +4,7 @@ import type {
   Season,
 } from "../types/cinemaSeasons";
 import { CinemaSeason } from "./CinemaSeason";
+import { CreateSeasonForm } from "./SeasonsLambdaInvokes/CreateSeasonForm";
 
 const LAMBDA_URL =
   "https://3xtvetxqkvp5h5wsstfzr4hysq0isbyf.lambda-url.eu-north-1.on.aws/";
@@ -71,6 +72,7 @@ export function CinemaSeasonsView({ cinemaId }: Props) {
 
   return (
     <div>
+      <CreateSeasonForm cinemaId={cinemaId} />
       {Object.entries(seasons).map(
         ([seasonKey, season]) => (
           <CinemaSeason
