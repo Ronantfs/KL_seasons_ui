@@ -47,8 +47,6 @@ export interface Season {
 // mirrors CinemaSeasons = Dict[str, Season]
 export type CinemaSeasons = Record<string, Season>;
 
-
-
 // mirrors ActiveSupportedCinema enum
 export type ActiveSupportedCinema =
   | "castle"
