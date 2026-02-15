@@ -6,6 +6,7 @@ import type {
 import { CinemaSeason } from "./CinemaSeason";
 import { CreateSeasonForm } from "./SeasonsLambdaInvokes/CreateSeasonForm";
 import { AssignFilmsToSeasons } from "./SeasonsLambdaInvokes/AssignFilmsToSeasons";
+import { MoveFilmsBetweenSeasons } from "./SeasonsLambdaInvokes/MoveFilmsBetweenSeasons";
 
 const LAMBDA_URL =
   "https://3xtvetxqkvp5h5wsstfzr4hysq0isbyf.lambda-url.eu-north-1.on.aws/";
@@ -114,6 +115,7 @@ export function CinemaSeasonsView({ cinemaId }: Props) {
           </div>
 
           <AssignFilmsToSeasons cinemaId={cinemaId} />
+          <MoveFilmsBetweenSeasons cinemaId={cinemaId} />
 
           {Object.entries(seasons).map(([seasonKey, season]) => (
             <CinemaSeason

@@ -1,0 +1,196 @@
+/* ── existing image thumbnails ──────────────────────────── */
+
+.siu-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.siu-thumbnail {
+  width: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #333;
+  background: #232336;
+}
+
+.siu-thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.siu-thumbnail-name {
+  font-size: 0.72rem;
+  color: #888;
+  padding: 4px 6px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.siu-empty {
+  color: #555;
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+/* ── drop zone ─────────────────────────────────────────── */
+
+.siu-dropzone {
+  border: 2px dashed #555;
+  border-radius: 10px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #888;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.siu-dropzone:hover {
+  border-color: #7c6aef;
+  color: #bbb;
+  background: rgba(124, 106, 239, 0.04);
+}
+
+.siu-dropzone.dragging {
+  border-color: #7c6aef;
+  background: rgba(124, 106, 239, 0.08);
+  color: #fff;
+}
+
+/* ── preview area ──────────────────────────────────────── */
+
+.siu-preview {
+  margin-top: 14px;
+  animation: siuFadeIn 0.15s ease-out;
+}
+
+@keyframes siuFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.siu-preview img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  display: block;
+}
+
+.siu-preview-meta {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* ── image name input ──────────────────────────────────── */
+
+.siu-name-group {
+  margin-top: 12px;
+}
+
+.siu-name-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.siu-name-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.siu-name-input:focus {
+  border-color: #7c6aef;
+  box-shadow: 0 0 0 2px rgba(124, 106, 239, 0.2);
+}
+
+.siu-name-error {
+  font-size: 0.75rem;
+  color: #f77;
+  margin-top: 4px;
+}
+
+/* ── action buttons ────────────────────────────────────── */
+
+.siu-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.siu-upload-btn {
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: #7c6aef;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.siu-upload-btn:hover:not(:disabled) {
+  background: #6a58d6;
+}
+
+.siu-upload-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.siu-cancel-btn {
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #bbb;
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.siu-cancel-btn:hover {
+  border-color: #666;
+  color: #fff;
+}
+
+/* ── feedback ──────────────────────────────────────────── */
+
+.siu-feedback {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.siu-feedback.error {
+  background: rgba(238, 85, 85, 0.12);
+  color: #f77;
+}
+
+.siu-feedback.success {
+  background: rgba(68, 170, 153, 0.12);
+  color: #6dcfb5;
+}

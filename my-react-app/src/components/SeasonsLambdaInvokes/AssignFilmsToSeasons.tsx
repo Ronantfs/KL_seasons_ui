@@ -114,17 +114,34 @@ export function AssignFilmsToSeasons({ cinemaId }: Props) {
 
         const filmsData: Record<string, Film> = filmsJson.active_listings;
         const seasonsData: Record<string, Season> = seasonsJson.seasons;
+        const activeFilmIds = new Set(Object.keys(filmsData));
 
-        // initialise assignments: every season gets an empty array,
-        // all films start in season_none
-        const initial: Record<string, string[]> = {
-          season_none: Object.keys(filmsData),
-        };
-        for (const key of Object.keys(seasonsData)) {
-          if (key !== "season_none") {
-            initial[key] = [];
+        // Pre-populate assignments from existing season data so that
+        // films already assigned to a season are preserved by default.
+        const initial: Record<string, string[]> = {};
+        const alreadyAssigned = new Set<string>();
+
+        for (const [key, season] of Object.entries(seasonsData)) {
+          const existingFilmIds = Object.keys(season.films ?? {}).filter(
+            (id) => activeFilmIds.has(id)
+          );
+          initial[key] = existingFilmIds;
+          for (const id of existingFilmIds) {
+            if (key !== "season_none") alreadyAssigned.add(id);
           }
         }
+
+        // Films in active_listings not assigned to any real season
+        // go into season_none
+        const unassigned = [...activeFilmIds].filter(
+          (id) => !alreadyAssigned.has(id)
+        );
+        initial["season_none"] = [
+          ...(initial["season_none"] ?? []),
+          ...unassigned.filter(
+            (id) => !(initial["season_none"] ?? []).includes(id)
+          ),
+        ];
 
         setFilms(filmsData);
         setSeasons(seasonsData);

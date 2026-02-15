@@ -3,46 +3,100 @@
 .cinema-season {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 24px;
-  padding: 24px;
   background: #1e1e2e;
   border: 1px solid #333;
   border-radius: 12px;
   color: #e0e0e0;
   text-align: left;
+  transition: border-color 0.15s ease;
 }
 
-/* ── header row ──────────────────────────────────────────── */
+.cinema-season:hover {
+  border-color: #444;
+}
+
+.cinema-season.expanded {
+  border-color: #7c6aef55;
+}
+
+/* ── header row (clickable) ──────────────────────────────── */
 
 .season-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #333;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 12px;
+  transition: background 0.12s ease;
+}
+
+.season-header:hover {
+  background: rgba(124, 106, 239, 0.06);
 }
 
 .season-header-left {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   min-width: 0;
 }
 
 .season-title {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #fff;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .season-date-badge {
   font-size: 0.78rem;
   color: #888;
+}
+
+.season-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.season-film-count {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #888;
+  padding: 3px 10px;
+  border-radius: 10px;
+  background: rgba(124, 106, 239, 0.1);
+}
+
+.season-chevron {
+  font-size: 0.85rem;
+  color: #666;
+  transition: transform 0.2s ease;
+}
+
+.season-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* ── expanded body ───────────────────────────────────────── */
+
+.season-body {
+  padding: 0 20px 20px;
+}
+
+.season-body-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #333;
 }
 
 /* ── field sections ──────────────────────────────────────── */
