@@ -59,38 +59,70 @@ export function CinemaSeasonsView({ cinemaId }: Props) {
   }
 
   const seasons = data?.seasons ?? {};
+  const seasonCount = Object.keys(seasons).length;
 
   return (
-    <div>
-      {/* Always available: allows creating first season */}
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <CreateSeasonForm cinemaId={cinemaId} />
 
-      <button onClick={loadSeasons} disabled={loading}>
-        {loading
-          ? "Loading…"
-          : `Load ${cinemaId} seasons`}
+      <button
+        onClick={loadSeasons}
+        disabled={loading}
+        style={{
+          width: "100%",
+          padding: "14px 20px",
+          fontSize: "1rem",
+          fontWeight: 600,
+          cursor: loading ? "not-allowed" : "pointer",
+          border: "2px solid #444",
+          borderRadius: 10,
+          background: loading ? "rgba(124, 106, 239, 0.08)" : "#7c6aef",
+          color: "#fff",
+          transition: "all 0.15s ease",
+          opacity: loading ? 0.6 : 1,
+        }}
+      >
+        {loading ? "Loading..." : `Load seasons for ${cinemaId}`}
       </button>
 
       {error && (
-        <div style={{ color: "crimson" }}>
-          Error: {error}
+        <div
+          style={{
+            padding: "10px 14px",
+            borderRadius: 8,
+            fontSize: "0.88rem",
+            fontWeight: 500,
+            background: "rgba(238, 85, 85, 0.12)",
+            color: "#f77",
+            border: "1px solid rgba(238, 85, 85, 0.25)",
+          }}
+        >
+          {error}
         </div>
       )}
 
       {hasLoaded && (
         <>
+          <div
+            style={{
+              fontSize: "0.82rem",
+              color: "#888",
+              padding: "4px 0",
+            }}
+          >
+            {seasonCount} season{seasonCount !== 1 ? "s" : ""} loaded
+          </div>
+
           <AssignFilmsToSeasons cinemaId={cinemaId} />
 
-          {Object.entries(seasons).map(
-            ([seasonKey, season]) => (
-              <CinemaSeason
-                key={seasonKey}
-                cinemaId={cinemaId}
-                seasonKey={seasonKey}
-                season={season}
-              />
-            )
-          )}
+          {Object.entries(seasons).map(([seasonKey, season]) => (
+            <CinemaSeason
+              key={seasonKey}
+              cinemaId={cinemaId}
+              seasonKey={seasonKey}
+              season={season}
+            />
+          ))}
         </>
       )}
     </div>

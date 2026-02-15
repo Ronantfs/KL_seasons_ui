@@ -1,0 +1,168 @@
+/* ── display mode ─────────────────────────────────────────── */
+
+.esf {
+  margin-bottom: 14px;
+}
+
+.esf-display {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.esf-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #888;
+  min-width: 0;
+  margin-bottom: 4px;
+}
+
+.esf-value {
+  font-size: 0.9rem;
+  color: #ddd;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 0;
+}
+
+.esf-value-empty {
+  color: #555;
+  font-style: italic;
+}
+
+.esf-value-json {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #232336;
+  padding: 8px 12px;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  font-family: monospace;
+  border-radius: 6px;
+  color: #aaa;
+  border: 1px solid #333;
+}
+
+.esf-edit-btn {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a99cf7;
+  background: rgba(124, 106, 239, 0.1);
+  border: 1px solid rgba(124, 106, 239, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.esf-edit-btn:hover {
+  background: rgba(124, 106, 239, 0.2);
+  border-color: rgba(124, 106, 239, 0.4);
+}
+
+/* ── edit mode ───────────────────────────────────────────── */
+
+.esf-editing {
+  animation: esfFadeIn 0.15s ease-out;
+}
+
+@keyframes esfFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.esf-input,
+.esf-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #7c6aef;
+  border-radius: 8px;
+  outline: none;
+  transition: box-shadow 0.15s ease;
+  box-shadow: 0 0 0 2px rgba(124, 106, 239, 0.2);
+  margin-top: 6px;
+}
+
+.esf-textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.esf-textarea.mono {
+  font-family: monospace;
+  font-size: 0.82rem;
+}
+
+.esf-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.esf-save-btn {
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  background: #7c6aef;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.esf-save-btn:hover:not(:disabled) {
+  background: #6a58d6;
+}
+
+.esf-save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.esf-cancel-btn {
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #bbb;
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.esf-cancel-btn:hover {
+  border-color: #666;
+  color: #fff;
+}
+
+/* ── feedback ────────────────────────────────────────────── */
+
+.esf-feedback {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.esf-feedback.error {
+  background: rgba(238, 85, 85, 0.12);
+  color: #f77;
+}
+
+.esf-feedback.success {
+  background: rgba(68, 170, 153, 0.12);
+  color: #6dcfb5;
+}

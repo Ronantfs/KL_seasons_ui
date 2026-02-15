@@ -1,45 +1,108 @@
+/* ── season card ──────────────────────────────────────────── */
+
 .cinema-season {
-  width: 100%! important;
+  width: 100%;
   box-sizing: border-box;
-  margin-bottom: 40px;
-  padding: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #1e1e2e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  color: #e0e0e0;
+  text-align: left;
+}
+
+/* ── header row ──────────────────────────────────────────── */
+
+.season-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #333;
+}
+
+.season-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
 
 .season-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.season-subtitle {
-  margin-top: 16px;
+.season-date-badge {
+  font-size: 0.78rem;
+  color: #888;
 }
 
-.season-field {
-  margin-top: 4px;
+/* ── field sections ──────────────────────────────────────── */
+
+.season-section {
+  margin-bottom: 20px;
+}
+
+.season-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.season-section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #2a2a3c;
+}
+
+/* ── films section ───────────────────────────────────────── */
+
+.films-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
 .films-title {
-  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.films-count-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: rgba(124, 106, 239, 0.15);
+  color: #a99cf7;
 }
 
 .no-films {
-  color: #666;
+  color: #555;
   font-style: italic;
+  font-size: 0.88rem;
 }
 
-.season-text {
-  margin: 4px 0 0 0;
-  line-height: 1.5;
-}
-
-
-.season-json {
-  white-space: pre-wrap;
-  word-break: break-word;
-  background: #f6f8fa;
-  padding: 8px;
-  margin-top: 4px;
-  font-size: 12px;
-  border-radius: 4px;
+.films-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 120px);
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

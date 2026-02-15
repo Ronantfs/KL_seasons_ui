@@ -1,72 +1,88 @@
-/* GRID CONTAINER */
-.films-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 100px);
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
+/* ── grid (inherited from CinemaSeason.css .films-grid) ──── */
 
-/* FILM CARD */
+/* ── film card ───────────────────────────────────────────── */
+
 .film {
-  width: 100px;
+  width: 120px;
   overflow: hidden;
+  background: #2a2a3c;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px;
+  transition: border-color 0.15s;
 }
 
-/* TITLE */
+.film:hover {
+  border-color: #555;
+}
+
+/* ── title ───────────────────────────────────────────────── */
+
 .film__title {
-  font-size: 0.6rem;
-  line-height: 1.1;
-  margin-bottom: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 6px 0;
   text-align: center;
-  width: 100px;
+  color: #e0e0e0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
-/* PLACEHOLDER IMAGE */
+/* ── poster placeholder ──────────────────────────────────── */
+
 .film__image-placeholder {
-  width: 100px;
-  height: 56px; /* 16:9 scaled to 100px width */
-  background: red;
-  color: white;
+  width: 100%;
+  height: 60px;
+  background: #333;
+  color: #666;
   font-size: 0.55rem;
-  font-weight: bold;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.25rem;
+  margin-bottom: 6px;
+  border-radius: 4px;
   text-transform: uppercase;
 }
 
-/* SCREENINGS */
+/* ── screenings ──────────────────────────────────────────── */
+
 .film__screenings {
-  width: 100px;
+  width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
 .film__screening-day {
-  margin-bottom: 0.25rem;
+  margin-bottom: 4px;
 }
 
 .film__date {
-  font-size: 0.45rem;
+  font-size: 0.55rem;
   font-weight: 600;
   display: block;
-  margin-bottom: 0.1rem;
+  margin-bottom: 2px;
+  color: #999;
 }
 
-/* TIMES */
+/* ── times ───────────────────────────────────────────────── */
+
 .film__times {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.15rem;
+  gap: 3px;
 }
 
 .film__time {
-  background: black;
-  color: white;
-  font-size: 0.4rem;
-  padding: 0.05rem 0.15rem;
+  background: #7c6aef;
+  color: #fff;
+  font-size: 0.5rem;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
 }
