@@ -1,0 +1,70 @@
+.assign-boxes {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.season-box {
+  border: 1px solid #ccc;
+  padding: 12px;
+  width: 260px;
+  background: #fafafa;
+  min-height: 120px;
+  color: black;
+}
+
+.season-box h4 {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+
+.film-row {
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  background: white;
+  border: 1px solid #ddd;
+  font-size: 0.85rem;
+}
+
+.draggable {
+  cursor: grab;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+.empty {
+  font-size: 0.8rem;
+  color: #777;
+  font-style: italic;
+}
+
+.assign-wrapper {
+  margin-bottom: 24px;
+}
+
+.assign-toggle {
+  margin-bottom: 12px;
+}
+
+.assign-submit {
+  margin-top: 12px;
+  background-color: #2e7d32;
+  color: white;
+  font-weight: bold;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.assign-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.assign-error {
+  color: crimson;
+  margin-top: 8px;
+}

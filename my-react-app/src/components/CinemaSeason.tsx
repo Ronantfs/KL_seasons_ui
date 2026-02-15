@@ -1,7 +1,13 @@
-import type { ActiveSupportedCinema, RawFilmListing, Season, SeasonInfo } from "../types/cinemaSeasons";
+import type {
+    ActiveSupportedCinema,
+    RawFilmListing,
+    Season,
+    SeasonInfo,
+} from "../types/cinemaSeasons";
 import { FilmComponent } from "./FilmComponent";
 import "./CinemaSeason.css";
 import { DeleteSeasonButton } from "./SeasonsLambdaInvokes/DeleteSeasonButton";
+import { EditableSeasonField } from "./SeasonsLambdaInvokes/EditableSeasonField";
 
 interface CinemaSeasonProps {
     cinemaId: ActiveSupportedCinema;
@@ -9,36 +15,17 @@ interface CinemaSeasonProps {
     season: Season;
 }
 
-function renderValue(value: unknown) {
-    if (value === null || value === undefined) return "(null)";
-    if (typeof value === "string" && value.length === 0) return "(empty)";
-    if (Array.isArray(value) && value.length === 0) return "[ ]";
-    if (
-        typeof value === "object" &&
-        !Array.isArray(value) &&
-        Object.keys(value).length === 0
-    )
-        return "{ }";
-
-    if (typeof value === "object") {
-        return (
-            <pre className="season-json">
-                {JSON.stringify(value, null, 2)}
-            </pre>
-        );
-    }
-
-    return String(value);
-}
-
-export function CinemaSeason({ cinemaId, seasonKey, season }: CinemaSeasonProps) {
+export function CinemaSeason({
+    cinemaId,
+    seasonKey,
+    season,
+}: CinemaSeasonProps) {
     const info: SeasonInfo = season.season_info;
     const films: Record<string, RawFilmListing> = season.films;
     const filmEntries = Object.entries(films);
 
     return (
         <section className="cinema-season">
-
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <h2 className="season-title">{seasonKey}</h2>
 
@@ -50,48 +37,69 @@ export function CinemaSeason({ cinemaId, seasonKey, season }: CinemaSeasonProps)
 
             <h3 className="season-subtitle">Season Info:</h3>
 
-            <div className="season-field">
-                <strong>season_name:</strong> {renderValue(info.season_name)}
-            </div>
+            <EditableSeasonField
+                label="season_name"
+                field="season_name"
+                value={info.season_name}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
-            <div className="season-field">
-                <strong>season_group_name:</strong> {renderValue(info.season_group_name)}
-            </div>
+            <EditableSeasonField
+                label="season_group_name"
+                field="season_group_name"
+                value={info.season_group_name}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
-            <div className="season-field">
-                <strong>season_group_info:</strong> {renderValue(info.season_group_info)}
-            </div>
+            <EditableSeasonField
+                label="season_group_info"
+                field="season_group_info"
+                value={info.season_group_info}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
-            <div className="season-field">
-                <strong>season_text:</strong>
-                {info.season_text && typeof info.season_text === "object" ? (
-                    <p className="season-text">
-                        {Object.entries(info.season_text).map(([key, value]) => (
-                            <span key={key}>
-                                <strong>{key}:</strong> {value}{" "}
-                            </span>
-                        ))}
-                    </p>
-                ) : (
-                    "(empty)"
-                )}
-            </div>
+            <EditableSeasonField
+                label="season_text"
+                field="season_text"
+                value={info.season_text}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
-            <div className="season-field">
-                <strong>programmer_name:</strong> {renderValue(info.programmer_name)}
-            </div>
+            <EditableSeasonField
+                label="programmer_name"
+                field="programmer_name"
+                value={info.programmer_name}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
-            <div className="season-field">
-                <strong>programmer_bio:</strong> {renderValue(info.programmer_bio)}
-            </div>
+            <EditableSeasonField
+                label="programmer_bio"
+                field="programmer_bio"
+                value={info.programmer_bio}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
-            <div className="season-field">
-                <strong>season_date_range:</strong> {renderValue(info.season_date_range)}
-            </div>
+            <EditableSeasonField
+                label="season_date_range"
+                field="season_date_range"
+                value={info.season_date_range}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
-            <div className="season-field">
-                <strong>season_images:</strong> {renderValue(info.season_images)}
-            </div>
+            <EditableSeasonField
+                label="season_images"
+                field="season_images"
+                value={info.season_images}
+                cinemaId={cinemaId}
+                seasonKey={seasonKey}
+            />
 
             <h4 className="films-title">
                 films ({filmEntries.length})
