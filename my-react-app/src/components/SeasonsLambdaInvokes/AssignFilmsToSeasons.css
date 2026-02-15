@@ -1,70 +1,498 @@
-.assign-boxes {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-
-.season-box {
-  border: 1px solid #ccc;
-  padding: 12px;
-  width: 260px;
-  background: #fafafa;
-  min-height: 120px;
-  color: black;
-}
-
-.season-box h4 {
-  margin: 0 0 8px;
-  font-size: 0.95rem;
-}
-
-.film-row {
-  padding: 6px 8px;
-  margin-bottom: 6px;
-  background: white;
-  border: 1px solid #ddd;
-  font-size: 0.85rem;
-}
-
-.draggable {
-  cursor: grab;
-}
-
-.draggable:active {
-  cursor: grabbing;
-}
-
-.empty {
-  font-size: 0.8rem;
-  color: #777;
-  font-style: italic;
-}
+/* ── wrapper & toggle ─────────────────────────────────────── */
 
 .assign-wrapper {
-  margin-bottom: 24px;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .assign-toggle {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px dashed #555;
+  border-radius: 10px;
+  background: transparent;
+  color: #ccc;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.assign-toggle:hover {
+  border-color: #7c6aef;
+  color: #fff;
+  background: rgba(124, 106, 239, 0.06);
+}
+
+.assign-toggle.open {
+  border-style: solid;
+  border-color: #7c6aef;
+  color: #fff;
+  background: rgba(124, 106, 239, 0.08);
+}
+
+/* ── panel shell ─────────────────────────────────────────── */
+
+.assign-panel {
+  margin-top: 12px;
+  padding: 24px;
+  background: #1e1e2e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  color: #e0e0e0;
+  animation: assignSlideDown 0.2s ease-out;
+}
+
+@keyframes assignSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── loading ─────────────────────────────────────────────── */
+
+.assign-loading {
+  text-align: center;
+  padding: 40px 0;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.assign-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #444;
+  border-top-color: #7c6aef;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
   margin-bottom: 12px;
 }
 
-.assign-submit {
-  margin-top: 12px;
-  background-color: #2e7d32;
-  color: white;
-  font-weight: bold;
-  padding: 8px 14px;
-  border: none;
-  cursor: pointer;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.assign-submit:disabled {
-  opacity: 0.6;
+/* ── step indicator ──────────────────────────────────────── */
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 24px;
+}
+
+.step-dot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #666;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+
+.step-dot.active {
+  color: #fff;
+}
+
+.step-dot.completed {
+  color: #4a9;
+}
+
+.step-number {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #333;
+  color: #666;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.step-dot.active .step-number {
+  background: #7c6aef;
+  color: #fff;
+}
+
+.step-dot.completed .step-number {
+  background: #4a9;
+  color: #fff;
+}
+
+.step-connector {
+  flex: 1;
+  height: 2px;
+  background: #333;
+  margin: 0 12px;
+}
+
+.step-connector.completed {
+  background: #4a9;
+}
+
+/* ── step 1: season picker ───────────────────────────────── */
+
+.step-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.season-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.season-pick-card {
+  padding: 16px;
+  background: #2a2a3c;
+  border: 2px solid #3a3a4c;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.season-pick-card:hover {
+  border-color: #7c6aef;
+  background: #2e2e42;
+}
+
+.season-pick-card.selected {
+  border-color: #7c6aef;
+  background: rgba(124, 106, 239, 0.12);
+}
+
+.season-pick-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.season-pick-dates {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+.season-pick-count {
+  font-size: 0.75rem;
+  color: #7c6aef;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* ── step 2: film selector ───────────────────────────────── */
+
+.film-selector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.selected-season-badge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(124, 106, 239, 0.15);
+  color: #a99cf7;
+}
+
+.film-search {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.film-search:focus {
+  border-color: #7c6aef;
+  box-shadow: 0 0 0 2px rgba(124, 106, 239, 0.2);
+}
+
+.film-search::placeholder {
+  color: #666;
+}
+
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.film-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.film-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.film-grid::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.film-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #2a2a3c;
+  border: 1px solid #3a3a4c;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.film-card:hover {
+  border-color: #555;
+  background: #2e2e42;
+}
+
+.film-card.selected-for-current {
+  border-color: #7c6aef;
+  background: rgba(124, 106, 239, 0.12);
+}
+
+.film-card.assigned-elsewhere {
+  opacity: 0.5;
+}
+
+.film-card.assigned-elsewhere:hover {
+  opacity: 0.7;
+}
+
+.film-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.12s;
+  font-size: 0.7rem;
+  color: transparent;
+}
+
+.film-card.selected-for-current .film-checkbox {
+  border-color: #7c6aef;
+  background: #7c6aef;
+  color: #fff;
+}
+
+.film-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.film-card-title {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.film-card-owner {
+  font-size: 0.72rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+.no-films-match {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ── step 3: review ──────────────────────────────────────── */
+
+.review-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-season-block {
+  background: #2a2a3c;
+  border: 1px solid #3a3a4c;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.review-season-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review-season-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.review-film-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(124, 106, 239, 0.15);
+  color: #a99cf7;
+}
+
+.review-film-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.review-film-tag {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  background: #333;
+  border-radius: 6px;
+  color: #ccc;
+}
+
+.review-empty {
+  font-size: 0.82rem;
+  color: #666;
+  font-style: italic;
+}
+
+.review-unassigned-note {
+  font-size: 0.82rem;
+  color: #888;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px dashed #444;
+}
+
+/* ── navigation buttons ──────────────────────────────────── */
+
+.assign-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.btn-back {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #bbb;
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-back:hover {
+  border-color: #666;
+  color: #fff;
+}
+
+.btn-next {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: #7c6aef;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-next:hover:not(:disabled) {
+  background: #6a58d6;
+}
+
+.btn-next:disabled {
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
-.assign-error {
-  color: crimson;
-  margin-top: 8px;
+.btn-confirm {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #2e9e6a;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  background: #268a5b;
+}
+
+.btn-confirm:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── feedback ────────────────────────────────────────────── */
+
+.assign-feedback {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.assign-feedback.error {
+  background: rgba(238, 85, 85, 0.12);
+  color: #f77;
+  border: 1px solid rgba(238, 85, 85, 0.25);
+}
+
+.assign-feedback.success {
+  background: rgba(68, 170, 153, 0.12);
+  color: #6dcfb5;
+  border: 1px solid rgba(68, 170, 153, 0.25);
 }

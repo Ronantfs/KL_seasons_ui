@@ -19,12 +19,12 @@ const MAX_DATE = iso(new Date(NOW.getFullYear() + 1, 11, 31));
 
 export function CreateSeasonForm({ cinemaId }: Props) {
   const [open, setOpen] = useState(false);
+  const [showOptional, setShowOptional] = useState(false);
 
   const [seasonName, setSeasonName] = useState("");
   const [seasonGroupName, setSeasonGroupName] = useState("");
-  const [seasonGroupInfo, setSeasonGroupInfo] = useState("{}");
+  const [seasonGroupInfo, setSeasonGroupInfo] = useState("");
 
-  // season_text is now plain string
   const [seasonText, setSeasonText] = useState("");
 
   const [programmerName, setProgrammerName] = useState("");
@@ -37,30 +37,27 @@ export function CreateSeasonForm({ cinemaId }: Props) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const requiredClass = (v: string) =>
-    v.trim() ? "required-filled" : "required-empty";
+  const filledClass = (v: string) => (v.trim() ? "filled" : "");
 
-  const endDateClass = () => {
-    if (!seasonStartDate || !seasonEndDate) return "required-empty";
-    return seasonEndDate >= seasonStartDate
-      ? "required-filled"
-      : "required-invalid";
+  const endDateValidClass = () => {
+    if (!seasonStartDate || !seasonEndDate) return "";
+    return seasonEndDate >= seasonStartDate ? "filled" : "invalid";
   };
 
   function validate(): boolean {
     if (
-      !seasonName ||
-      !programmerName ||
-      !programmerBio ||
+      !seasonName.trim() ||
+      !programmerName.trim() ||
+      !programmerBio.trim() ||
       !seasonStartDate ||
       !seasonEndDate
     ) {
-      setError("All required fields must be filled.");
+      setError("Please fill in all required fields.");
       return false;
     }
 
     if (seasonEndDate < seasonStartDate) {
-      setError("Season end date must be on or after season start date.");
+      setError("End date must be on or after the start date.");
       return false;
     }
 
@@ -68,7 +65,7 @@ export function CreateSeasonForm({ cinemaId }: Props) {
       try {
         JSON.parse(seasonGroupInfo);
       } catch {
-        setError("season_group_info must be valid JSON.");
+        setError("Group info must be valid JSON.");
         return false;
       }
     }
@@ -96,12 +93,9 @@ export function CreateSeasonForm({ cinemaId }: Props) {
               ? JSON.parse(seasonGroupInfo)
               : undefined,
             season_name: seasonName,
-
-            // convert plain string → JSON here
             season_text: {
               text: seasonText,
             },
-
             programmer_name: programmerName,
             programmer_bio: programmerBio,
             season_date_range: `${seasonStartDate},${seasonEndDate}`,
@@ -123,13 +117,12 @@ export function CreateSeasonForm({ cinemaId }: Props) {
       setSuccess(true);
       setSeasonName("");
       setSeasonGroupName("");
-      setSeasonGroupInfo("{}");
+      setSeasonGroupInfo("");
       setSeasonText("");
       setProgrammerName("");
       setProgrammerBio("");
       setSeasonStartDate("");
       setSeasonEndDate("");
-      setOpen(false);
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
@@ -140,100 +133,173 @@ export function CreateSeasonForm({ cinemaId }: Props) {
   return (
     <div className="create-season-wrapper">
       <button
-        className="toggle-button"
-        onClick={() => setOpen((v) => !v)}
+        className={`toggle-button${open ? " open" : ""}`}
+        onClick={() => {
+          setOpen((v) => !v);
+          setSuccess(false);
+          setError(null);
+        }}
       >
-        {open
-          ? "Close season form"
-          : `Create new season for ${cinemaId}`}
+        {open ? "Cancel" : `+ New season for ${cinemaId}`}
       </button>
 
       {open && (
         <form className="create-season-form" onSubmit={handleSubmit}>
-          <p className="form-title">Create New Season</p>
-
-          <div className="cinema-id">
-            <strong>Cinema ID:</strong> {cinemaId}
+          {/* header */}
+          <div className="form-header">
+            <p className="form-title">Create Season</p>
+            <span className="cinema-badge">{cinemaId}</span>
           </div>
 
-          <input
-            className={`input ${requiredClass(seasonName)}`}
-            placeholder="season name (required)"
-            value={seasonName}
-            onChange={(e) => setSeasonName(e.target.value)}
-          />
+          {/* ── Season details ──────────────────────── */}
+          <div className="form-section">
+            <span className="section-label">Season details</span>
 
-          <input
-            className="input optional"
-            placeholder="season_group_name (optional)"
-            value={seasonGroupName}
-            onChange={(e) => setSeasonGroupName(e.target.value)}
-          />
-
-          <textarea
-            className="textarea optional"
-            placeholder="season_group_info (JSON, optional)"
-            value={seasonGroupInfo}
-            onChange={(e) => setSeasonGroupInfo(e.target.value)}
-          />
-
-          <textarea
-            className="textarea required-filled"
-            placeholder="season text (plain text)"
-            value={seasonText}
-            onChange={(e) => setSeasonText(e.target.value)}
-          />
-
-          <input
-            className={`input ${requiredClass(programmerName)}`}
-            placeholder="programmer_name (required)"
-            value={programmerName}
-            onChange={(e) => setProgrammerName(e.target.value)}
-          />
-
-          <textarea
-            className={`textarea ${requiredClass(programmerBio)}`}
-            placeholder="programmer_bio (required)"
-            value={programmerBio}
-            onChange={(e) => setProgrammerBio(e.target.value)}
-          />
-
-          <div className="date-range">
-            <div className="date-field">
-              <label>Season start date</label>
+            <div className="field-group">
+              <label className="field-label">
+                Season name <span className="req">*</span>
+              </label>
               <input
-                type="date"
-                className={`input ${requiredClass(seasonStartDate)}`}
-                min={MIN_DATE}
-                max={MAX_DATE}
-                value={seasonStartDate}
-                onChange={(e) => setSeasonStartDate(e.target.value)}
+                className={`input ${filledClass(seasonName)}`}
+                placeholder="e.g. Hitchcock Retrospective"
+                value={seasonName}
+                onChange={(e) => setSeasonName(e.target.value)}
               />
             </div>
 
-            <div className="date-field">
-              <label>Season end date</label>
-              <input
-                type="date"
-                className={`input ${endDateClass()}`}
-                min={MIN_DATE}
-                max={MAX_DATE}
-                value={seasonEndDate}
-                onChange={(e) => setSeasonEndDate(e.target.value)}
+            <div className="field-group">
+              <label className="field-label">Season description</label>
+              <textarea
+                className={`textarea ${filledClass(seasonText)}`}
+                placeholder="Describe the season for the audience..."
+                value={seasonText}
+                onChange={(e) => setSeasonText(e.target.value)}
               />
             </div>
           </div>
 
-          <button
-            className="submit-button"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Creating…" : "Create Season"}
+          {/* ── Date range ──────────────────────────── */}
+          <div className="form-section">
+            <span className="section-label">Date range</span>
+
+            <div className="date-range">
+              <div className="date-field">
+                <label className="field-label">
+                  Start date <span className="req">*</span>
+                </label>
+                <input
+                  type="date"
+                  className={`input ${filledClass(seasonStartDate)}`}
+                  min={MIN_DATE}
+                  max={MAX_DATE}
+                  value={seasonStartDate}
+                  onChange={(e) => setSeasonStartDate(e.target.value)}
+                />
+              </div>
+
+              <div className="date-field">
+                <label className="field-label">
+                  End date <span className="req">*</span>
+                </label>
+                <input
+                  type="date"
+                  className={`input ${endDateValidClass()}`}
+                  min={seasonStartDate || MIN_DATE}
+                  max={MAX_DATE}
+                  value={seasonEndDate}
+                  onChange={(e) => setSeasonEndDate(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* ── Programmer ──────────────────────────── */}
+          <div className="form-section">
+            <span className="section-label">Programmer</span>
+
+            <div className="field-group">
+              <label className="field-label">
+                Name <span className="req">*</span>
+              </label>
+              <input
+                className={`input ${filledClass(programmerName)}`}
+                placeholder="e.g. Jane Smith"
+                value={programmerName}
+                onChange={(e) => setProgrammerName(e.target.value)}
+              />
+            </div>
+
+            <div className="field-group">
+              <label className="field-label">
+                Bio <span className="req">*</span>
+              </label>
+              <textarea
+                className={`textarea ${filledClass(programmerBio)}`}
+                placeholder="A short bio of the programmer..."
+                value={programmerBio}
+                onChange={(e) => setProgrammerBio(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* ── Optional: grouping ──────────────────── */}
+          <div className="form-section">
+            <button
+              type="button"
+              className="optional-toggle"
+              onClick={() => setShowOptional((v) => !v)}
+            >
+              <span
+                className={`optional-chevron${showOptional ? " expanded" : ""}`}
+              >
+                &#9654;
+              </span>
+              Optional: season grouping
+            </button>
+
+            {showOptional && (
+              <div className="optional-fields">
+                <div className="field-group">
+                  <label className="field-label">Group name</label>
+                  <input
+                    className={`input ${filledClass(seasonGroupName)}`}
+                    placeholder="e.g. Summer 2026 Programme"
+                    value={seasonGroupName}
+                    onChange={(e) => setSeasonGroupName(e.target.value)}
+                  />
+                  <span className="field-hint">
+                    Use this to group related seasons together
+                  </span>
+                </div>
+
+                <div className="field-group">
+                  <label className="field-label">Group info (JSON)</label>
+                  <textarea
+                    className={`textarea ${filledClass(seasonGroupInfo)}`}
+                    placeholder='{"key": "value"}'
+                    value={seasonGroupInfo}
+                    onChange={(e) => setSeasonGroupInfo(e.target.value)}
+                    style={{ fontFamily: "monospace", fontSize: "0.85rem" }}
+                  />
+                  <span className="field-hint">
+                    Extra metadata for the group, must be valid JSON
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ── Submit ──────────────────────────────── */}
+          <button className="submit-button" type="submit" disabled={loading}>
+            {loading ? "Creating..." : "Create Season"}
           </button>
 
-          {error && <div className="error">{error}</div>}
-          {success && <div className="success">Season created.</div>}
+          {error && <div className="feedback error">{error}</div>}
+          {success && (
+            <div className="feedback success">
+              Season created successfully!
+            </div>
+          )}
         </form>
       )}
     </div>
