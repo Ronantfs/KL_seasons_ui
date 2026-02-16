@@ -13,6 +13,12 @@ function iso(d: Date) {
   return d.toISOString().slice(0, 10);
 }
 
+/** Convert "YYYY-MM-DD" → "DD-MM-YY" */
+function isoToDDMMYY(isoDate: string): string {
+  const [yyyy, mm, dd] = isoDate.split("-");
+  return `${dd}-${mm}-${yyyy.slice(2)}`;
+}
+
 const NOW = new Date();
 const MIN_DATE = iso(new Date(NOW.getFullYear(), 0, 1));
 const MAX_DATE = iso(new Date(NOW.getFullYear() + 1, 11, 31));
@@ -48,7 +54,6 @@ export function CreateSeasonForm({ cinemaId }: Props) {
     if (
       !seasonName.trim() ||
       !programmerName.trim() ||
-      !programmerBio.trim() ||
       !seasonStartDate ||
       !seasonEndDate
     ) {
@@ -99,6 +104,8 @@ export function CreateSeasonForm({ cinemaId }: Props) {
             programmer_name: programmerName,
             programmer_bio: programmerBio,
             season_date_range: `${seasonStartDate},${seasonEndDate}`,
+            season_start_date_DDMMYY: isoToDDMMYY(seasonStartDate),
+            season_end_date_DDMMYY: isoToDDMMYY(seasonEndDate),
             season_images: [],
           },
         },
@@ -230,9 +237,7 @@ export function CreateSeasonForm({ cinemaId }: Props) {
             </div>
 
             <div className="field-group">
-              <label className="field-label">
-                Bio <span className="req">*</span>
-              </label>
+              <label className="field-label">Bio</label>
               <textarea
                 className={`textarea ${filledClass(programmerBio)}`}
                 placeholder="A short bio of the programmer..."

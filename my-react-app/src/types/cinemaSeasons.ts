@@ -7,8 +7,13 @@ export interface SeasonInfo {
   programmer_name: string;
   programmer_bio: string;
   season_date_range: string;
+  season_start_date_DDMMYY: string; //NEW: format: dd-mm-yy, e.g 01-01-25
+  season_end_date_DDMMYY: string; //NEW: format: dd-mm-yy, e.g 01-01-25
   season_images: string[];
 }
+
+
+
 
 export interface FilmWhen {
   date: string;

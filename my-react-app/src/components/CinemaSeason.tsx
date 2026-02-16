@@ -90,6 +90,22 @@ export function CinemaSeason({
               cinemaId={cinemaId}
               seasonKey={seasonKey}
             />
+
+            <EditableSeasonField
+              label="season_start_date_DDMMYY"
+              field="season_start_date_DDMMYY"
+              value={info.season_start_date_DDMMYY}
+              cinemaId={cinemaId}
+              seasonKey={seasonKey}
+            />
+
+            <EditableSeasonField
+              label="season_end_date_DDMMYY"
+              field="season_end_date_DDMMYY"
+              value={info.season_end_date_DDMMYY}
+              cinemaId={cinemaId}
+              seasonKey={seasonKey}
+            />
           </div>
 
           {/* ── Programmer ──────────────────── */}

@@ -21,6 +21,8 @@ const FRIENDLY_LABELS: Record<string, string> = {
   programmer_name: "Programmer",
   programmer_bio: "Programmer bio",
   season_date_range: "Date range",
+  season_start_date_DDMMYY: "Start date (DD-MM-YY)",
+  season_end_date_DDMMYY: "End date (DD-MM-YY)",
   season_images: "Images",
 };
 
