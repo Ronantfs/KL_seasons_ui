@@ -65,7 +65,8 @@ export type ActiveSupportedCinema =
   | "the_cinema_museum"
   | "barbican"
   | "bfi_southbank"
-  | "cine_lumiere";
+  | "cine_lumiere"
+  | "arthouse_crouch_end";
 
 
   export interface GetSeasonsForCinemaResponse {

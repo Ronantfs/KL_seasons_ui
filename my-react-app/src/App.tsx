@@ -31,6 +31,8 @@ export default function App() {
           <option value="barbican">Barbican</option>
           <option value="bfi_southbank">BFI Southbank</option>
           <option value="cine_lumiere">Ciné Lumière</option>
+          <option value="arthouse_crouch_end">Arthouse Crouch End</option>
+
         </select>
       </div>
 
