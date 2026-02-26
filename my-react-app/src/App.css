@@ -50,3 +50,38 @@
   background: #2a2a3c;
   color: #e8e8e8;
 }
+
+/* ── tab navigation ─────────────────────────────────────── */
+
+.app-tabs {
+  display: flex;
+  gap: 4px;
+  background: #2a2a3c;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.app-tab {
+  padding: 8px 18px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: #888;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.app-tab:hover {
+  color: #ccc;
+  background: rgba(124, 106, 239, 0.06);
+}
+
+.app-tab.active {
+  color: #fff;
+  background: #7c6aef;
+  font-weight: 600;
+}
