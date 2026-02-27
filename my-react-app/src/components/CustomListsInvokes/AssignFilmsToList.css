@@ -1,0 +1,389 @@
+/* ── assign films wrapper ─────────────────────────────────── */
+
+.afl-wrapper {
+  width: 100%;
+}
+
+.afl-toggle {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px dashed #34d399;
+  border-radius: 8px;
+  background: rgba(52, 211, 153, 0.04);
+  color: #34d399;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.afl-toggle:hover {
+  border-color: #34d399;
+  color: #fff;
+  background: rgba(52, 211, 153, 0.06);
+}
+
+.afl-toggle.open {
+  border-style: solid;
+  border-color: #f0c040;
+  color: #f0c040;
+  background: rgba(240, 192, 64, 0.08);
+}
+
+/* ── panel ────────────────────────────────────────────────── */
+
+.afl-panel {
+  margin-top: 10px;
+  padding: 16px;
+  background: #262638;
+  border: 1px solid #3a3a4c;
+  border-radius: 10px;
+  animation: aflSlideDown 0.2s ease-out;
+}
+
+@keyframes aflSlideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── date range label ────────────────────────────────────── */
+
+.afl-date-range-label {
+  font-size: 0.8rem;
+  color: #b0a0ff;
+  background: rgba(124, 106, 239, 0.08);
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+
+/* ── loading ─────────────────────────────────────────────── */
+
+.afl-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  color: #999;
+  font-size: 0.88rem;
+}
+
+.afl-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #3a3a4c;
+  border-top-color: #7c6aef;
+  border-radius: 50%;
+  animation: aflSpin 0.6s linear infinite;
+}
+
+@keyframes aflSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── filters rows ────────────────────────────────────────── */
+
+.afl-filters-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.afl-search {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.afl-search:focus {
+  border-color: #7c6aef;
+  box-shadow: 0 0 0 2px rgba(124, 106, 239, 0.2);
+}
+
+.afl-search::placeholder {
+  color: #666;
+}
+
+.afl-cinema-filter {
+  box-sizing: border-box;
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 0.84rem;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.afl-cinema-filter:focus {
+  border-color: #7c6aef;
+}
+
+.afl-cinema-filter option {
+  background: #2a2a3c;
+  color: #e8e8e8;
+}
+
+.afl-date-filter {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-size: 0.84rem;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  color-scheme: dark;
+}
+
+.afl-date-filter:focus {
+  border-color: #7c6aef;
+}
+
+/* ── count bar ───────────────────────────────────────────── */
+
+.afl-film-count-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 2px;
+  font-size: 0.78rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.afl-selection-badge {
+  background: rgba(124, 106, 239, 0.15);
+  color: #b0a0ff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.76rem;
+}
+
+/* ── film grid ───────────────────────────────────────────── */
+
+.afl-film-grid {
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  padding-right: 4px;
+}
+
+.afl-film-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.afl-film-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.afl-film-grid::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.afl-no-match {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+/* ── film card ───────────────────────────────────────────── */
+
+.afl-film-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.afl-film-card:hover {
+  background: rgba(124, 106, 239, 0.06);
+  border-color: #3a3a4c;
+}
+
+.afl-film-card.selected {
+  background: rgba(124, 106, 239, 0.12);
+  border-color: #7c6aef;
+}
+
+.afl-film-card.already-in-list {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.afl-film-card.already-in-list:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: transparent;
+}
+
+/* ── checkbox ────────────────────────────────────────────── */
+
+.afl-film-checkbox {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  color: #7c6aef;
+  margin-top: 2px;
+  transition: border-color 0.15s ease;
+}
+
+.afl-film-card.selected .afl-film-checkbox {
+  border-color: #7c6aef;
+  background: rgba(124, 106, 239, 0.15);
+}
+
+.afl-film-card.already-in-list .afl-film-checkbox {
+  border-color: #444;
+  color: #666;
+}
+
+/* ── film info ───────────────────────────────────────────── */
+
+.afl-film-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.afl-film-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e8e8e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.afl-film-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: #888;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+/* ── showings summary (inline per-cinema) ────────────────── */
+
+.afl-film-showings-summary {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.afl-showing-line {
+  font-size: 0.7rem;
+  color: #999;
+  line-height: 1.5;
+}
+
+.afl-showing-cinema {
+  font-weight: 600;
+  color: #b0a0ff;
+}
+
+.afl-showing-date {
+  color: #ccc;
+}
+
+.afl-showing-times {
+  color: #777;
+}
+
+.afl-film-existing-tag {
+  font-size: 0.7rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.afl-film-dbid {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: #555;
+  font-family: monospace;
+  margin-top: 3px;
+}
+
+/* ── submit ───────────────────────────────────────────────── */
+
+.afl-submit {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: #34d399;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.afl-submit:hover:not(:disabled) {
+  background: #2ab888;
+}
+
+.afl-submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.afl-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── feedback ─────────────────────────────────────────────── */
+
+.afl-feedback {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.afl-feedback.error {
+  background: rgba(238, 85, 85, 0.12);
+  color: #f77;
+  border: 1px solid rgba(238, 85, 85, 0.25);
+}
+
+.afl-feedback.success {
+  background: rgba(68, 170, 153, 0.12);
+  color: #6dcfb5;
+  border: 1px solid rgba(68, 170, 153, 0.25);
+}

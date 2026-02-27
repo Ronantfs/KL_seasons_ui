@@ -11,25 +11,25 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  border: 2px dashed #555;
+  border: 2px dashed #34d399;
   border-radius: 10px;
-  background: transparent;
-  color: #ccc;
+  background: rgba(52, 211, 153, 0.04);
+  color: #34d399;
   transition: all 0.2s ease;
   letter-spacing: 0.02em;
 }
 
 .assign-toggle:hover {
-  border-color: #7c6aef;
+  border-color: #34d399;
   color: #fff;
-  background: rgba(124, 106, 239, 0.06);
+  background: rgba(52, 211, 153, 0.06);
 }
 
 .assign-toggle.open {
   border-style: solid;
-  border-color: #7c6aef;
-  color: #fff;
-  background: rgba(124, 106, 239, 0.08);
+  border-color: #f0c040;
+  color: #f0c040;
+  background: rgba(240, 192, 64, 0.08);
 }
 
 /* ── panel shell ─────────────────────────────────────────── */
@@ -434,7 +434,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #fff;
-  background: #7c6aef;
+  background: #34d399;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -442,7 +442,7 @@
 }
 
 .btn-next:hover:not(:disabled) {
-  background: #6a58d6;
+  background: #2ab888;
 }
 
 .btn-next:disabled {
@@ -455,7 +455,7 @@
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
-  background: #2e9e6a;
+  background: #34d399;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -463,7 +463,7 @@
 }
 
 .btn-confirm:hover:not(:disabled) {
-  background: #268a5b;
+  background: #2ab888;
 }
 
 .btn-confirm:active:not(:disabled) {

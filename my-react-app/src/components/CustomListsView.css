@@ -1,0 +1,261 @@
+/* ── custom lists view ──────────────────────────────────────── */
+
+.cl-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── curator section ───────────────────────────────────────── */
+
+.cl-curator-section {
+  background: #1e1e2e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.cl-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cl-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+}
+
+.cl-inline-loading {
+  font-size: 0.78rem;
+  color: #7c6aef;
+  font-weight: 500;
+}
+
+.cl-filter-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 12px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cl-filter-input:focus {
+  border-color: #7c6aef;
+  box-shadow: 0 0 0 2px rgba(124, 106, 239, 0.2);
+}
+
+.cl-filter-input::placeholder {
+  color: #666;
+}
+
+.cl-curator-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cl-curator-card {
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #ccc;
+  background: #2a2a3c;
+  border: 2px solid #3a3a4c;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.cl-curator-card:hover {
+  border-color: #7c6aef;
+  color: #fff;
+  background: #2e2e42;
+}
+
+.cl-curator-card.selected {
+  border-color: #7c6aef;
+  background: rgba(124, 106, 239, 0.12);
+  color: #fff;
+}
+
+.cl-no-match {
+  color: #666;
+  font-size: 0.88rem;
+  font-style: italic;
+  padding: 8px 0;
+}
+
+/* ── load button ───────────────────────────────────────────── */
+
+.cl-load-button {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #4a87db;
+  border-radius: 10px;
+  background: #5b9cf5;
+  color: #fff;
+  transition: all 0.15s ease;
+}
+
+.cl-load-button:hover:not(:disabled) {
+  background: #4a87db;
+}
+
+.cl-load-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(91, 156, 245, 0.08);
+}
+
+/* ── lists count ───────────────────────────────────────────── */
+
+.cl-lists-count {
+  font-size: 0.82rem;
+  color: #888;
+  padding: 4px 0;
+}
+
+/* ── feedback ──────────────────────────────────────────────── */
+
+.cl-error {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  background: rgba(238, 85, 85, 0.12);
+  color: #f77;
+  border: 1px solid rgba(238, 85, 85, 0.25);
+}
+
+.cl-empty {
+  color: #666;
+  font-size: 0.88rem;
+  font-style: italic;
+  padding: 12px 0;
+}
+
+.cl-success {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  background: rgba(68, 170, 153, 0.12);
+  color: #6dcfb5;
+  border: 1px solid rgba(68, 170, 153, 0.25);
+}
+
+/* ── create curator ───────────────────────────────────────── */
+
+.cl-create-curator {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #2a2a3c;
+}
+
+.cl-create-curator-toggle {
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px dashed #34d399;
+  border-radius: 8px;
+  background: rgba(52, 211, 153, 0.04);
+  color: #34d399;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.cl-create-curator-toggle:hover {
+  border-color: #34d399;
+  color: #fff;
+  background: rgba(52, 211, 153, 0.06);
+}
+
+.cl-create-curator-toggle.open {
+  border-style: solid;
+  border-color: #f0c040;
+  color: #f0c040;
+  background: rgba(240, 192, 64, 0.08);
+}
+
+.cl-create-curator-form {
+  margin-top: 10px;
+  animation: clCuratorSlide 0.15s ease-out;
+}
+
+@keyframes clCuratorSlide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cl-create-curator-row {
+  display: flex;
+  gap: 8px;
+}
+
+.cl-create-curator-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-family: monospace;
+  color: #e8e8e8;
+  background: #2a2a3c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cl-create-curator-input:focus {
+  border-color: #7c6aef;
+  box-shadow: 0 0 0 2px rgba(124, 106, 239, 0.2);
+}
+
+.cl-create-curator-input::placeholder {
+  color: #666;
+}
+
+.cl-create-curator-submit {
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: #34d399;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+
+.cl-create-curator-submit:hover:not(:disabled) {
+  background: #2ab888;
+}
+
+.cl-create-curator-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cl-create-curator-hint {
+  display: block;
+  font-size: 0.72rem;
+  color: #666;
+  margin-top: 6px;
+}

@@ -1,11 +1,11 @@
 /* ── wrapper & toggle ─────────────────────────────────────── */
 
-.create-season-wrapper {
+.ccl-wrapper {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
 }
 
-.toggle-button {
+.ccl-toggle {
   width: 100%;
   padding: 14px 20px;
   font-size: 1rem;
@@ -19,13 +19,13 @@
   letter-spacing: 0.02em;
 }
 
-.toggle-button:hover {
+.ccl-toggle:hover {
   border-color: #34d399;
   color: #fff;
   background: rgba(52, 211, 153, 0.06);
 }
 
-.toggle-button.open {
+.ccl-toggle.open {
   border-style: solid;
   border-color: #f0c040;
   color: #f0c040;
@@ -34,7 +34,7 @@
 
 /* ── form shell ──────────────────────────────────────────── */
 
-.create-season-form {
+.ccl-form {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -46,15 +46,15 @@
   border: 1px solid #333;
   border-radius: 12px;
   color: #e0e0e0;
-  animation: slideDown 0.2s ease-out;
+  animation: cclSlideDown 0.2s ease-out;
 }
 
-@keyframes slideDown {
+@keyframes cclSlideDown {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.form-header {
+.ccl-form-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,14 +63,14 @@
   border-bottom: 1px solid #333;
 }
 
-.form-title {
+.ccl-form-title {
   font-size: 1.35rem;
   font-weight: 700;
   margin: 0;
   color: #fff;
 }
 
-.cinema-badge {
+.ccl-curator-badge {
   font-size: 0.8rem;
   font-weight: 600;
   padding: 4px 12px;
@@ -82,15 +82,15 @@
 
 /* ── sections ────────────────────────────────────────────── */
 
-.form-section {
+.ccl-form-section {
   margin-bottom: 24px;
 }
 
-.form-section:last-of-type {
+.ccl-form-section:last-of-type {
   margin-bottom: 20px;
 }
 
-.section-label {
+.ccl-section-label {
   display: block;
   font-size: 0.7rem;
   font-weight: 700;
@@ -100,17 +100,17 @@
   margin-bottom: 10px;
 }
 
-/* ── field groups ─────────────────────────────────────────── */
+/* ── fields ──────────────────────────────────────────────── */
 
-.field-group {
+.ccl-field-group {
   margin-bottom: 16px;
 }
 
-.field-group:last-child {
+.ccl-field-group:last-child {
   margin-bottom: 0;
 }
 
-.field-label {
+.ccl-field-label {
   display: block;
   font-size: 0.82rem;
   font-weight: 500;
@@ -118,22 +118,15 @@
   margin-bottom: 5px;
 }
 
-.field-label .req {
+.ccl-field-label .ccl-req {
   color: #ef6a6a;
   margin-left: 2px;
 }
 
-.field-hint {
-  display: block;
-  font-size: 0.72rem;
-  color: #666;
-  margin-top: 4px;
-}
-
 /* ── inputs & textareas ──────────────────────────────────── */
 
-.input,
-.textarea {
+.ccl-input,
+.ccl-textarea {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 14px;
@@ -147,84 +140,49 @@
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.input::placeholder,
-.textarea::placeholder {
+.ccl-input::placeholder,
+.ccl-textarea::placeholder {
   color: #666;
 }
 
-.input:focus,
-.textarea:focus {
+.ccl-input:focus,
+.ccl-textarea:focus {
   border-color: #7c6aef;
   box-shadow: 0 0 0 2px rgba(124, 106, 239, 0.2);
 }
 
-.textarea {
+.ccl-textarea {
   min-height: 80px;
   resize: vertical;
   line-height: 1.5;
 }
 
-/* field validation states */
-.input.filled,
-.textarea.filled {
+.ccl-input.filled,
+.ccl-textarea.filled {
   border-color: #4a9;
 }
 
-.input.invalid,
-.textarea.invalid {
+.ccl-input.invalid,
+.ccl-textarea.invalid {
   border-color: #e55;
   box-shadow: 0 0 0 2px rgba(238, 85, 85, 0.15);
 }
 
 /* ── date range ──────────────────────────────────────────── */
 
-.date-range {
+.ccl-date-range {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.date-field .field-label {
+.ccl-date-field .ccl-field-label {
   margin-bottom: 5px;
 }
 
-/* ── optional section collapse ───────────────────────────── */
+/* ── submit ──────────────────────────────────────────────── */
 
-.optional-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0;
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 0.82rem;
-  cursor: pointer;
-  transition: color 0.15s;
-  margin-bottom: 12px;
-}
-
-.optional-toggle:hover {
-  color: #bbb;
-}
-
-.optional-chevron {
-  display: inline-block;
-  transition: transform 0.2s ease;
-  font-size: 0.7rem;
-}
-
-.optional-chevron.expanded {
-  transform: rotate(90deg);
-}
-
-.optional-fields {
-  animation: slideDown 0.15s ease-out;
-}
-
-/* ── submit button ───────────────────────────────────────── */
-
-.submit-button {
+.ccl-submit {
   width: 100%;
   padding: 14px 20px;
   font-size: 1rem;
@@ -238,22 +196,22 @@
   margin-top: 4px;
 }
 
-.submit-button:hover:not(:disabled) {
+.ccl-submit:hover:not(:disabled) {
   background: #2ab888;
 }
 
-.submit-button:active:not(:disabled) {
+.ccl-submit:active:not(:disabled) {
   transform: scale(0.98);
 }
 
-.submit-button:disabled {
+.ccl-submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* ── feedback banners ────────────────────────────────────── */
+/* ── feedback ────────────────────────────────────────────── */
 
-.feedback {
+.ccl-feedback {
   margin-top: 14px;
   padding: 10px 14px;
   border-radius: 8px;
@@ -261,13 +219,13 @@
   font-weight: 500;
 }
 
-.feedback.error {
+.ccl-feedback.error {
   background: rgba(238, 85, 85, 0.12);
   color: #f77;
   border: 1px solid rgba(238, 85, 85, 0.25);
 }
 
-.feedback.success {
+.ccl-feedback.success {
   background: rgba(68, 170, 153, 0.12);
   color: #6dcfb5;
   border: 1px solid rgba(68, 170, 153, 0.25);

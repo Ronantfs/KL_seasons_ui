@@ -141,7 +141,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: #fff;
-  background: #7c6aef;
+  background: #34d399;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -149,7 +149,7 @@
 }
 
 .siu-upload-btn:hover:not(:disabled) {
-  background: #6a58d6;
+  background: #2ab888;
 }
 
 .siu-upload-btn:disabled {
@@ -161,17 +161,18 @@
   padding: 8px 20px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #bbb;
+  color: #f0c040;
   background: transparent;
-  border: 1px solid #444;
+  border: 1px solid #f0c040;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .siu-cancel-btn:hover {
-  border-color: #666;
+  border-color: #d4a830;
   color: #fff;
+  background: rgba(240, 192, 64, 0.08);
 }
 
 /* ── feedback ──────────────────────────────────────────── */

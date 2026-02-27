@@ -49,9 +49,9 @@
   padding: 4px 10px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #a99cf7;
-  background: rgba(124, 106, 239, 0.1);
-  border: 1px solid rgba(124, 106, 239, 0.25);
+  color: #f0c040;
+  background: rgba(240, 192, 64, 0.1);
+  border: 1px solid rgba(240, 192, 64, 0.25);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s;
@@ -59,8 +59,8 @@
 }
 
 .esf-edit-btn:hover {
-  background: rgba(124, 106, 239, 0.2);
-  border-color: rgba(124, 106, 239, 0.4);
+  background: rgba(240, 192, 64, 0.2);
+  border-color: rgba(240, 192, 64, 0.4);
 }
 
 /* ── edit mode ───────────────────────────────────────────── */
@@ -113,7 +113,7 @@
   font-size: 0.82rem;
   font-weight: 600;
   color: #fff;
-  background: #7c6aef;
+  background: #f0c040;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -121,7 +121,7 @@
 }
 
 .esf-save-btn:hover:not(:disabled) {
-  background: #6a58d6;
+  background: #d4a830;
 }
 
 .esf-save-btn:disabled {
@@ -133,17 +133,18 @@
   padding: 6px 16px;
   font-size: 0.82rem;
   font-weight: 500;
-  color: #bbb;
+  color: #f0c040;
   background: transparent;
-  border: 1px solid #444;
+  border: 1px solid #f0c040;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .esf-cancel-btn:hover {
-  border-color: #666;
+  border-color: #d4a830;
   color: #fff;
+  background: rgba(240, 192, 64, 0.08);
 }
 
 /* ── feedback ────────────────────────────────────────────── */

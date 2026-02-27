@@ -1,0 +1,228 @@
+/* ── custom list card ─────────────────────────────────────── */
+
+.cl-card {
+  width: 100%;
+  box-sizing: border-box;
+  background: #1e1e2e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  color: #e0e0e0;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+
+.cl-card:hover {
+  border-color: #444;
+}
+
+.cl-card.expanded {
+  border-color: #7c6aef55;
+}
+
+/* ── header ──────────────────────────────────────────────── */
+
+.cl-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 12px;
+  transition: background 0.12s ease;
+}
+
+.cl-card-header:hover {
+  background: rgba(124, 106, 239, 0.06);
+}
+
+.cl-card-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cl-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cl-card-dates {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+.cl-card-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cl-card-film-count {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #888;
+  padding: 3px 10px;
+  border-radius: 10px;
+  background: rgba(124, 106, 239, 0.1);
+}
+
+.cl-card-chevron {
+  font-size: 0.85rem;
+  color: #666;
+  transition: transform 0.2s ease;
+}
+
+.cl-card-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* ── body ────────────────────────────────────────────────── */
+
+.cl-card-body {
+  padding: 0 20px 20px;
+}
+
+.cl-card-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #333;
+}
+
+.cl-card-section {
+  margin-bottom: 20px;
+}
+
+.cl-card-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.cl-card-section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #2a2a3c;
+}
+
+.cl-card-caption {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── films section ───────────────────────────────────────── */
+
+.cl-films-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.cl-films-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.cl-films-count-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: rgba(124, 106, 239, 0.15);
+  color: #a99cf7;
+}
+
+.cl-no-films {
+  color: #555;
+  font-style: italic;
+  font-size: 0.88rem;
+}
+
+.cl-films-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── film item ───────────────────────────────────────────── */
+
+.cl-film-item {
+  padding: 12px 16px;
+  background: #2a2a3c;
+  border: 1px solid #3a3a4c;
+  border-radius: 8px;
+}
+
+.cl-film-item-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cl-film-item-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #e8e8e8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cl-film-item-dbid {
+  font-size: 0.72rem;
+  color: #7c6aef;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.cl-film-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.cl-film-item-directors {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+.cl-film-item-year {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+.cl-film-item-cinemas {
+  font-size: 0.72rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.cl-film-item-caption {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #3a3a4c;
+  font-style: italic;
+}
