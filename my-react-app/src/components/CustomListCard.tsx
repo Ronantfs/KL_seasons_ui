@@ -1,7 +1,8 @@
 import { useState } from "react";
-import type { CustomList, ListFilm } from "../types/customLists";
+import type { CustomList } from "../types/customLists";
 import { DeleteListButton } from "./CustomListsInvokes/DeleteListButton";
 import { AssignFilmsToList } from "./CustomListsInvokes/AssignFilmsToList";
+import { SingleCustomListFilmSummary } from "./SingleCustomListFilmSummary";
 import "./CustomListCard.css";
 
 interface Props {
@@ -11,33 +12,6 @@ interface Props {
   onFilmsAssigned: () => void;
 }
 
-function filmTitle(film: ListFilm): string {
-  const cinemas = Object.values(film.cinema_listings);
-  for (const cinema of cinemas) {
-    const title = cinema._additional_info?.title;
-    if (title) return title;
-  }
-  return `Film #${film.db_id}`;
-}
-
-function filmDirectors(film: ListFilm): string | null {
-  const cinemas = Object.values(film.cinema_listings);
-  for (const cinema of cinemas) {
-    const dirs = cinema._additional_info?.directors;
-    if (dirs && dirs.length > 0) return dirs.join(", ");
-  }
-  return null;
-}
-
-function filmYear(film: ListFilm): number | null {
-  const cinemas = Object.values(film.cinema_listings);
-  for (const cinema of cinemas) {
-    const yr = cinema._additional_info?.year;
-    if (yr) return yr;
-  }
-  return null;
-}
-
 export function CustomListCard({
   curator,
   list,
@@ -45,6 +19,7 @@ export function CustomListCard({
   onFilmsAssigned,
 }: Props) {
   const [open, setOpen] = useState(false);
+  const [jsonOpen, setJsonOpen] = useState(false);
 
   const filmCount = list.list_films.length;
 
@@ -111,44 +86,25 @@ export function CustomListCard({
               <div className="cl-no-films">No films assigned to this list</div>
             ) : (
               <div className="cl-films-grid">
-                {list.list_films.map((film) => {
-                  const title = filmTitle(film);
-                  const directors = filmDirectors(film);
-                  const year = filmYear(film);
-                  const cinemaCount = Object.keys(film.cinema_listings).length;
-
-                  return (
-                    <div key={film.db_id} className="cl-film-item">
-                      <div className="cl-film-item-main">
-                        <span className="cl-film-item-title">{title}</span>
-                        <span className="cl-film-item-dbid">
-                          #{film.db_id}
-                        </span>
-                      </div>
-                      {(directors || year) && (
-                        <div className="cl-film-item-meta">
-                          {directors && (
-                            <span className="cl-film-item-directors">
-                              {directors}
-                            </span>
-                          )}
-                          {year && (
-                            <span className="cl-film-item-year">({year})</span>
-                          )}
-                        </div>
-                      )}
-                      <div className="cl-film-item-cinemas">
-                        {cinemaCount} cinema{cinemaCount !== 1 ? "s" : ""}
-                      </div>
-                      {film.list_film_caption && (
-                        <div className="cl-film-item-caption">
-                          {film.list_film_caption}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                {list.list_films.map((film) => (
+                  <SingleCustomListFilmSummary key={film.db_id} film={film} />
+                ))}
               </div>
+            )}
+          </div>
+
+          {/* Raw JSON */}
+          <div className="cl-card-section">
+            <button
+              className="cl-json-toggle"
+              onClick={() => setJsonOpen((v) => !v)}
+            >
+              {jsonOpen ? "Hide" : "Show"} raw JSON
+            </button>
+            {jsonOpen && (
+              <pre className="cl-json-block">
+                <code>{JSON.stringify(list, null, 2)}</code>
+              </pre>
             )}
           </div>
         </div>

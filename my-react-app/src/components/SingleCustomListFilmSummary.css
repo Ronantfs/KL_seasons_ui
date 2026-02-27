@@ -1,0 +1,118 @@
+/* ── film summary card ──────────────────────────────────── */
+
+.clfs-card {
+  padding: 14px 16px;
+  background: #2a2a3c;
+  border: 1px solid #3a3a4c;
+  border-radius: 10px;
+}
+
+/* ── top: image + header ────────────────────────────────── */
+
+.clfs-top {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.clfs-image {
+  width: 72px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: #1a1a28;
+  border: 1px solid #3a3a4c;
+}
+
+.clfs-header {
+  flex: 1;
+  min-width: 0;
+}
+
+.clfs-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e8e8e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clfs-dbid {
+  font-size: 0.72rem;
+  color: #7c6aef;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.clfs-caption {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 6px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.clfs-caption.empty {
+  color: #555;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── screenings ─────────────────────────────────────────── */
+
+.clfs-screenings {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clfs-cinema {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.clfs-cinema-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e0d8b0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.clfs-no-dates {
+  font-size: 0.72rem;
+  color: #555;
+  font-style: italic;
+}
+
+.clfs-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 2px;
+}
+
+.clfs-date-row {
+  font-size: 0.76rem;
+  display: flex;
+  gap: 6px;
+}
+
+.clfs-date-label {
+  color: #c8a94e;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.clfs-times {
+  color: #ccc;
+}
